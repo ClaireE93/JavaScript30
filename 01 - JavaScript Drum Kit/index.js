@@ -9,16 +9,22 @@ class Drumkit {
   }
 
   handleKeydown(e) {
-    console.log('key pressed', e);
     const key = e.keyCode;
     const keyElements = document.querySelectorAll(`[data-key="${key}"]`);
+    if (!keyElements.length) { return; }
     // Add highlight class to keyElements[0]
+    keyElements[0].classList.add('playing');
     // Play audio file of keyElements[1];
+    keyElements[1].pause();
+    keyElements[1].play();
 
   }
 
   handleKeyup(e) {
     const key = e.keyCode;
+    const keyElements = document.querySelectorAll(`[data-key="${key}"]`);
+    if (!keyElements.length) { return; }
+    keyElements[0].classList.remove('playing');
   }
 }
 
