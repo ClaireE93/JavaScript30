@@ -10,28 +10,26 @@ class Drumkit {
 
   handleKey(e, isKeydown) {
     const key = e.keyCode;
-    const keyElements = document.querySelectorAll(`[data-key="${key}"]`);
-    if (!keyElements.length) { return; }
+    const [div, audio] = document.querySelectorAll(`[data-key="${key}"]`);
+    if (!div || !audio) { return; }
     if (isKeydown) {
-      this.handleKeydown(keyElements);
+      this.handleKeydown(div, audio);
     } else {
-      this.handleKeyup(keyElements);
+      this.handleKeyup(div);
     }
   }
 
-  handleKeydown(keyElements) {
-    // Add highlight class to keyElements[0]
-    keyElements[0].classList.add('playing');
-    // Play audio file of keyElements[1]
-    // Allow for spam clicks: Pause and reset audio to 0 if already playing
-    keyElements[1].pause();
-    keyElements[1].currentTime = 0;
-    keyElements[1].play();
+  handleKeydown(div, audio) {
+    // Add highlight class to div and play audio
+    div.classList.add('playing');
+    // Allow for spam clicks: Reset audio to 0 if already playing
+    audio.currentTime = 0;
+    audio.play();
   }
 
-  handleKeyup(keyElements) {
+  handleKeyup(div) {
     // Remove highlight class
-    keyElements[0].classList.remove('playing');
+    div.classList.remove('playing');
   }
 }
 
