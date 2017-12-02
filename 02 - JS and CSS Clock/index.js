@@ -11,7 +11,7 @@ class Clock {
     this.updateTime();
     this.renderClock();
   }
-  
+
   updateTime() {
     this.hour = this.time.getHours();
     this.min = this.time.getMinutes();
@@ -20,9 +20,9 @@ class Clock {
 
   renderClock() {
     const [hour, min, sec] = [
-      document.getElementById('hour'),
-      document.getElementById('min'),
-      document.getElementById('sec'),
+      document.querySelector('.hour-hand'),
+      document.querySelector('.min-hand'),
+      document.querySelector('.second-hand'),
     ];
     const hourDeg = 90 + (this.hour >= 13 ? (this.hour - 12) * (360 / 12) : this.hour * (360 / 12));
     const minDeg = 90 + this.min * (360 / 60);
