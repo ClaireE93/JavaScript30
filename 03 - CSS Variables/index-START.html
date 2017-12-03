@@ -55,15 +55,12 @@
   </style>
 
   <script>
-    document.getElementsByName('spacing')[0].addEventListener('input', (e) => {
-        document.documentElement.style.setProperty('--spacing', `${e.target.value}px`);
-    });
-    document.getElementsByName('blur')[0].addEventListener('input', (e) => {
-        document.documentElement.style.setProperty('--blur', `${e.target.value}px`);
-    });
-    document.getElementsByName('base')[0].addEventListener('input', (e) => {
-        document.documentElement.style.setProperty('--base', `${e.target.value}`);
-    });
+    const inputs = document.querySelectorAll('.controls input');
+    const handleChange = function updateCSSVariablesWithInput(e) {
+        const unit = this.dataset.sizing || '';
+        document.documentElement.style.setProperty(`--${this.name}`, `${e.target.value}${unit}`);
+    };
+    inputs.forEach(input => input.addEventListener('input', handleChange));
   </script>
 
 </body>
