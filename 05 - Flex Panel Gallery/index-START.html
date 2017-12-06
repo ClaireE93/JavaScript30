@@ -130,7 +130,20 @@
   </div>
 
   <script>
+        const nodes = document.querySelectorAll('.panel');
 
+        function toggleOpen() {
+            this.classList.toggle('open');
+        }
+
+        function toggleActive(e) {
+            if (e.propertyName.startsWith('flex')) {
+                this.classList.toggle('open-active');
+            }
+        }
+
+        nodes.forEach(panel => panel.addEventListener('click', toggleOpen));
+        nodes.forEach(panel => panel.addEventListener('transitionend', toggleActive));
   </script>
 
 
